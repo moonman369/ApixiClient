@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { preview } from "../assets";
@@ -14,9 +14,24 @@ const CreatePost = () => {
   });
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [initRandomPrompt, setInitRandomPrompt] = useState("");
+
+  useEffect(() => {
+    setInitRandomPrompt(getRandomPrompt(""));
+  }, []);
+
+  const generateImage = () => {};
+
   const handleSubmit = () => {};
-  const handleChange = (e) => {};
-  const handleSurpriseMe = () => {};
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSurpriseMe = () => {
+    setForm({ ...form, prompt: initRandomPrompt });
+    setInitRandomPrompt(getRandomPrompt(initRandomPrompt));
+  };
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -42,7 +57,7 @@ const CreatePost = () => {
             labelName="Prompt"
             type="text"
             name="prompt"
-            placeholder={getRandomPrompt("")}
+            placeholder={initRandomPrompt}
             value={form.prompt}
             handleChange={handleChange}
             isSurpriseMe
@@ -70,6 +85,29 @@ const CreatePost = () => {
               </div>
             )}
           </div>
+        </div>
+
+        <div className="mt-5 flex gap-5">
+          <button
+            type="button"
+            onClick={generateImage}
+            className="text-white bg-green-700 font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {generatingImg ? "Generating..." : "Generate"}
+          </button>
+        </div>
+
+        <div className="mt-10">
+          <p className="mt-2 text-[#666e75] text-[14px]">
+            Once your have created the image you want, you can share it with
+            others in the community
+          </p>
+          <button
+            type="submit"
+            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            {loading ? "Sharing..." : "Share with the community"}
+          </button>
         </div>
       </form>
     </section>
