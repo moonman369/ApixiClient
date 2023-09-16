@@ -144,10 +144,22 @@ const CreatePost = () => {
           <button
             type="button"
             onClick={generateImage}
-            className="text-white bg-green-700 font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
+            className="text-white bg-emerald-600 font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
+
+          {form.photo ? (
+            <a
+              download={`apixi-${form.prompt}`}
+              href={form.photo}
+              className="text-white bg-sky-700 font-medium rounded-md text-md w-[50%] sm:w-auto px-5 py-2.5 text-center"
+            >
+              Download
+            </a>
+          ) : (
+            <></>
+          )}
         </div>
 
         <div className="mt-10">
@@ -157,7 +169,7 @@ const CreatePost = () => {
           </p>
           <button
             type="submit"
-            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
+            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-md w-[50%] sm:w-auto px-5 py-2.5 text-center"
           >
             {loading ? "Sharing..." : "Share with the community"}
           </button>
