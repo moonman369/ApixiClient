@@ -13,7 +13,7 @@ const CreatePost = () => {
     photo: "",
   });
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [initRandomPrompt, setInitRandomPrompt] = useState("");
 
   useEffect(() => {
