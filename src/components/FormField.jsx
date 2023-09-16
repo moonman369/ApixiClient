@@ -39,7 +39,7 @@ const FormField = ({
         onChange={handleChange}
         onKeyDown={onKeyDown}
         required
-        className="bg-gray-600 border border-gray-300 text-md rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline none block w-full p-3 mb-7"
+        className="bg-gray-600 border border-gray-400 text-md rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline-none block w-full p-3 mb-7 text-white"
       />
     </div>
   );

@@ -64,6 +64,5 @@ export const surpriseMePrompts = [
   "Hands sitting on chairs having a dinner party where human heads are the bowls on the table",
   "Cross section of the earth where each level is a different level of a home",
   "Many birds inside of a trench coat, making the shape of a human wearing the coat",
-  ,
   "A man with a beard that is all plants and insects",
 ];
