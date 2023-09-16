@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { preview } from "../assets";
 import { getRandomPrompt } from "../utils";
-import { FormField, Loader } from "../components";
+import { FormField, Loader, LoaderSmall } from "../components";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const CreatePost = () => {
     photo: "",
   });
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [initRandomPrompt, setInitRandomPrompt] = useState("");
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const CreatePost = () => {
 
             {generatingImg && (
               <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
-                <Loader />
+                <Loader w={10} h={10} />
               </div>
             )}
           </div>
@@ -169,9 +169,12 @@ const CreatePost = () => {
           </p>
           <button
             type="submit"
-            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-md w-[50%] sm:w-auto px-5 py-2.5 text-center"
+            className="mt-3 text-white bg-[#6469ff] font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
           >
-            {loading ? "Sharing..." : "Share with the community"}
+            <span className="align-middle justify-center flex flex-row">
+              {loading ? <LoaderSmall /> : <></>}
+              {loading ? "Sharing..." : "Share with the community"}
+            </span>
           </button>
         </div>
       </form>
