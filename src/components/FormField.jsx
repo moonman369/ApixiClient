@@ -7,6 +7,7 @@ const FormField = ({
   placeholder,
   value,
   handleChange,
+  onKeyDown,
   isSurpriseMe,
   handleSurpriseMe,
 }) => {
@@ -36,6 +37,7 @@ const FormField = ({
         placeholder={placeholder}
         value={value}
         onChange={handleChange}
+        onKeyDown={onKeyDown}
         required
         className="bg-gray-600 border border-gray-300 text-md rounded-lg focus:ring-[#4649ff] focus:border-[#4649ff] outline none block w-full p-3 mb-7"
       />
