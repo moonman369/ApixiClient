@@ -171,7 +171,7 @@ const CreatePost = () => {
           )}
           {form.photo ? (
             <a
-              download={`apixi-${form.prompt}`}
+              download={`apixi-${form.prompt.trim().split(" ").join("-")}`}
               href={form.photo}
               className="text-white bg-sky-700 font-medium rounded-md text-md w-[50%] sm:w-auto px-5 py-2.5 text-center"
             >
