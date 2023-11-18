@@ -29,6 +29,13 @@ const CreatePost = () => {
     if (form.prompt) {
       try {
         setGeneratingImg(true);
+
+        if (cancelGeneration) {
+          setGeneratingImg(false);
+          setCancelGeneration(false);
+          return;
+        }
+
         const response = await fetch(
           "https://apixi-server.cyclic.cloud/api/v1/dalle",
           {
@@ -40,10 +47,23 @@ const CreatePost = () => {
           }
         );
 
+        if (cancelGeneration) {
+          setGeneratingImg(false);
+          setCancelGeneration(false);
+          return;
+        }
+
         const data = await response.json();
 
-        !cancelGeneration &&
+        if (cancelGeneration) {
+          setGeneratingImg(false);
+          setCancelGeneration(false);
+          return;
+        }
+
+        if (!cancelGeneration) {
           setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+        }
       } catch (error) {
         console.error(error);
       } finally {
