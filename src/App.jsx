@@ -1,15 +1,18 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
-import { logo } from "./assets";
+import { logo, openai, bg } from "./assets";
 import { Home, CreatePost } from "./pages";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <header className="w-full flex justify-between items-center bg-gray-200 sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
-        <Link to="/">
-          <img src={logo} alt="logo" className="w-28 object-contain" />
+      <header className="w-full h-[140px] flex justify-between items-center bg-[url(./assets/synthwave-8119826_1280.webp)] sm:px-8 px-4 py-4">
+        <Link to="/" className="flex flex-row blur-none">
+          <img src={openai} alt="logo" className="w-16 object-contain" />
+          <h1 className="font-extrabold text-[#deffed] mt-2 ml-2 text-[36px] drop-shadow-[0_1.4px_1.4px_rgba(0,0,0,2)] ">
+            Apixi
+          </h1>
         </Link>
 
         <Link
