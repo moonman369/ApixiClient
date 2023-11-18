@@ -15,10 +15,15 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
   const [initRandomPrompt, setInitRandomPrompt] = useState("");
+  const [cancelGeneration, setCancelGeneration] = useState(false);
 
   useEffect(() => {
     setInitRandomPrompt(getRandomPrompt(""));
   }, []);
+
+  // const cancel = () => {
+  //   setGeneratingImg(false);
+  // };
 
   const generateImage = async () => {
     if (form.prompt) {
@@ -37,11 +42,13 @@ const CreatePost = () => {
 
         const data = await response.json();
 
-        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+        !cancelGeneration &&
+          setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
       } catch (error) {
         console.error(error);
       } finally {
         setGeneratingImg(false);
+        setCancelGeneration(false);
       }
     } else {
       alert("Please enter a prompt");
@@ -148,7 +155,20 @@ const CreatePost = () => {
           >
             {generatingImg ? "Generating..." : "Generate"}
           </button>
-
+          {generatingImg ? (
+            <button
+              type="button"
+              onClick={() => {
+                setCancelGeneration(true);
+                setGeneratingImg(false);
+              }}
+              className="text-white bg-[#b96a6a] font-medium rounded-md text-md w-full sm:w-auto px-5 py-2.5 text-center"
+            >
+              Cancel
+            </button>
+          ) : (
+            <></>
+          )}
           {form.photo ? (
             <a
               download={`apixi-${form.prompt}`}
